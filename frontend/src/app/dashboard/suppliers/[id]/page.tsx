@@ -5,6 +5,7 @@ import { Card } from '@/components/ui/Card';
 import { Loader } from '@/components/ui/Loader';
 import { Badge } from '@/components/ui/Badge';
 import { RiskScoreGauge } from '@/components/charts/RiskScoreGauge';
+import { RiskScoreTrend } from '@/components/charts/RiskScoreTrend';
 import { Button } from '@/components/ui/Button';
 import { supplierService } from '@/services/supplierService';
 import { riskScoreService } from '@/services/riskScoreService';
@@ -122,6 +123,13 @@ export default function SupplierDetailPage() {
                     )}
                 </Card>
             </div>
+
+            {/* Risk Score Trend Chart */}
+            {scores.length >= 2 && (
+                <Card title='Risk Score Trend'>
+                    <RiskScoreTrend scores={scores} />
+                </Card>
+            )}
 
             {/* Score History */}
             {scores.length > 0 && (

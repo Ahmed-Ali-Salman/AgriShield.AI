@@ -6,4 +6,6 @@ export const alertService = {
         api.get<Alert[]>('/alerts', { params: { status } }),
     create: (data: { supplier_id: string; title: string; description: string; severity: string }) =>
         api.post<Alert>('/alerts', data),
+    updateStatus: (id: string, status: 'acknowledged' | 'resolved') =>
+        api.patch<Alert>(`/alerts/${id}`, { status }),
 };
