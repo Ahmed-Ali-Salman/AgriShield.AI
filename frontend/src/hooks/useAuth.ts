@@ -12,7 +12,10 @@ export function useAuth() {
         setError(null);
         try {
             const res = await authService.login(data);
+            // Store in localStorage for API interceptor
             localStorage.setItem('access_token', res.data.access_token);
+            // Store in cookie for Next.js middleware auth guard
+            document.cookie = `auth_token=${res.data.access_token}; path=/; max-age=${60 * 60 * 24 * 7}; SameSite=Lax`;
             return res.data;
         } catch (e: any) {
             setError(e.response?.data?.detail || 'Login failed');
@@ -23,6 +26,8 @@ export function useAuth() {
 
     const logout = () => {
         localStorage.removeItem('access_token');
+        document.cookie = 'auth_token=; path=/; max-age=0';
+        window.location.href = '/login';
     };
 
     return { login, logout, loading, error };

@@ -21,10 +21,17 @@ export default function LoginPage() {
     <div className='auth-page'>
       <form className='auth-form' onSubmit={handleSubmit}>
         <h1>AgriShield AI</h1>
+        <p style={{ textAlign: 'center', color: 'var(--color-text-muted)', marginBottom: '24px', fontSize: '0.9rem' }}>
+          Cyber-Resilient Food Supply Intelligence
+        </p>
         <Input label='Email' type='email' value={email} onChange={e => setEmail(e.target.value)} required />
         <Input label='Password' type='password' value={password} onChange={e => setPassword(e.target.value)} required />
-        {error && <p style={{ color: 'var(--color-danger)' }}>{error}</p>}
+        {error && <p style={{ color: 'var(--color-danger)', fontSize: '0.9rem' }}>{error}</p>}
         <Button type='submit' loading={loading}>Sign In</Button>
+        <p style={{ textAlign: 'center', marginTop: '16px', color: 'var(--color-text-muted)', fontSize: '0.9rem' }}>
+          Don&apos;t have an account?{' '}
+          <a href='/register' style={{ color: 'var(--color-primary)' }}>Create one</a>
+        </p>
       </form>
     </div>
   );
